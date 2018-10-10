@@ -86,7 +86,10 @@
         this.isShowing = false;
         this.leftCalendar = {};
         this.rightCalendar = {};
-
+        
+        // Gewähltes Range-Label
+        this.chosenLabel = null;
+        
         //custom options from user
         if (typeof options !== 'object' || options === null)
             options = {};
@@ -437,12 +440,18 @@
             this.element.on('keydown.daterangepicker', $.proxy(this.toggle, this));
         }
 
+        // Setze Daterange wenn Datum in Bereich
+        // macht Daterange Label im Dateset sichtbar
+        // var drp = $('#range_picker').data('daterangepicker');
+        // drp.chosenLabel
+        this.calculateChosenLabel();
+        
         //
         // if attached to a text input, set the initial value
         //
 
         this.updateElement();
-
+        
     };
 
     DateRangePicker.prototype = {
